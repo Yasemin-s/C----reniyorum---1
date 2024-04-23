@@ -1,4 +1,5 @@
 2 - C# Nedir ? (klavyeyi fn + enter değiştiriyor.)
+
 Orta seviyeli programlama dilidir. Orta seviyeden kastımız, kodların okunabilir ve anlaşılabilir olmasıdır. Kodlara bakıldığında bolca metinsel ifade yer alıyorsa, şiir gibi okuyabiliyorsan, beşeri dile yakınsa bu kodlar yüksek seviyeli bir dildir. Ama kodlara baktığında daha çok sembolik ifadeler yer alıyorsa, anlaşılması güçse bir mantığa/matematiğe dayalıysa bu kodlar düşük seviyeli kodlardır. 
 
 Microsoft tarafından geliştirilmiştir. .Net çatısını kullanır. .Net, Microsoft'un developerların kullanacağı teknolojileri bu çatı altında toplar. Bu teknolojiler mimariler, kütüphaneler, programlama dilleri, frameworkler olabilir. 
@@ -17,6 +18,7 @@ Diller birbirlerini örnek alabilirler. Birbirlerinden beliril şeyleri kopyalay
 Derlenen bir programlama dilidir. Derleme, yazılan kodların makinenin anlayabileceği ara dil formatına çevrilmesidir. Editör tarafından otomatik yapılır. Derleme, proje bazlı(sadece ilgili projenin dosyaları derlenir.) yada solution bazlı(solution altında bulunan tüm projeler derlenir.) yapılabilir.
 
 3 - .Net Framework ve .Net Core Nedir?  Farkları Nelerdir?
+
 .Net, Microsoft'un geliştiriciler için sunmuş olduğu teknolojilerin bulunduğu bir çatıdır. Bu tekonlojiler, programlama dilleri, mimariler, kütüphaneler...
   ! İşletim sistemi .net çatısı altına girmez, çünkü geliştiriciler için değil son kullanıcılar için sunulmuştur. 
   ! Programlama dillerinde mimari, bir yazılım uygulamasının nasıl yapılandırıldığı, organize edildiğini ifade eder.
@@ -40,6 +42,7 @@ Bulut uygulamaları, mikro hizmetler ve modern web uygulamalrı gibi yeni ve da�
 .NET Core: .NET Core, C# dışında F#, Visual Basic ve diğer dilleri de destekler. Ayrıca .NET Standard sayesinde .NET Framework ile uyumlu kütüphaneleri kullanabilir.
 
 4 - Compiler Nedir ? 
+
 Bir programlama dili derlenecek şekilde çalışıyorsa önce derlenmesi sonra çalıştırılması ve ekranda sonucun gösterilmesi gerekecektir.
 
 Compiler(derleme) işlemi, yazılan kodların makinenin/pc' nin anlayacağı/okunacağı/işleyebileceği ara dil formatına/koduna çevrilmesidir. 
@@ -51,8 +54,24 @@ Compiler işlemi, editörler tarafından otomatik yapılır ve geriye "exe"" ve 
 
 "exe" uzantılı dosyalar kullanıcının çalıştırabileceği dosya tipleridir. "dll" uzantılı dosyalar ise başka bir yazılım tarafından kullanılmasına/çalıştırılmasına imkan verir.
 
+5 - Kodlar Nasıl Compile Edilir ? 
 
+Kodların compile edilme süreci editörler tarafından otomatik yapılmaktadır. 
+Developer Command Prompt sayesinde .net türevlerinden biriyle yazılan kodların barındığı dosyalar derlenir. 
 
+Yazdığımız kodlar derlenmediği sürece kullanılabilir hale gelmez. Kullanılabilir hale gelmesi için kodun derlenip çalıştırılması gerekiyor. Kodların derlenip çaıştırılma süreci manuel olarak değil, kullandığımız editörler yada .Net CLI dediğimiz yardımcı asistan sayesinde yapılabiliyor.
+
+C# kodları, önce C# kaynak kodundan, C# derleyicisi tarafından makine diline daha yakın ara dil olan "Common Intermediate Language" (CIL) veya "Microsoft Intermediate Language" (MSIL) olarak adlandırılan bir ara dil/kod formatına derlenir. Bu ara kod daha sonra .Net Framework veya .Net Core gibi ortamlarda çalıştırılabilir hale gelmek üzere Just-In-Time (JIT) derleyici tarafından hedef makine diline (x86, x64) derlenir.
+
+Örnek: 
+
+![5-1](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/edc95a35-f8ed-43a8-87b9-159a249d15f3)
+
+![5-2](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/084d54e6-cc5a-4744-af26-f78cd0a782fd)
+
+![5-3](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/b46097f9-055f-481a-8991-e39826d5c08d)
+
+![5-4](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/25a3b133-efa0-4582-8531-0eef1d5b8b51)
 
 
 
