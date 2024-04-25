@@ -9,6 +9,7 @@ Açık kaynak kodludur. Open source olması ile birlikte, herkes bu programlama 
 OOP - object orianted programing'i destekler. OOP, sınıf ve nesne arasındaki ilişkiyi açıklayan bir kavramdır. 
 
 C# ile akla ne geliyorsa yapılabilir. Servis mimarileri, web, mobil, masaüstü programlar... 
+
   👉 ! C# ile veri madenciliğide yapılabilir. Ama python bu konuda çok daha iyidir. Amaca uygun programlama dili seçmek daha doğrudur. 
 
 C#, C benzeri bir dildir. C' nin bir üst versiyonu C++'dır. C++' ı n bir üst versiyonu ise C++++(# - diyez işareti) , C#'dır. "++", "+1" 'i ifade eder.
@@ -20,9 +21,13 @@ Derlenen bir programlama dilidir. Derleme, yazılan kodların makinenin anlayabi
 👋 3 - .Net Framework ve .Net Core Nedir?  Farkları Nelerdir?
 
 .Net, Microsoft'un geliştiriciler için sunmuş olduğu teknolojilerin bulunduğu bir çatıdır dedik. Bu tekonlojiler, programlama dilleri, mimariler, kütüphaneler...
+
   👉 ! İşletim sistemi, .Net çatısı altına girmez, çünkü geliştiriciler için değil son kullanıcılar için sunulmuştur. 
+  
   👉 ! Programlama dillerinde mimari, bir yazılım uygulamasının nasıl yapılandırıldığı, organize edildiğini ifade eder.
+  
   👉 ! Biz gerçek hayatta aslında uygulama değil çözüm yazıyoruz.
+  
   👉 ! .Net Core ve .Net Framework ifade etmede, yazılım geliştirme platformları yada çerçeve kelimeleri kullanılabilir.
 
 
@@ -100,7 +105,9 @@ Solution Explorer: Üzerinde çalışılan projenin tüm dosyalarının gösteri
 Error List: Derleme sürecinde alınan hataların gösterildiği penceredir. Dolayısıyla bu pencerede gösterilen hatalar derleme hatalarıdır. 
 
   👉 ! IDE ve Editör Farkı : 
+  
     Editör, bir metin düzenleme aracıdır. Sadece metin dosyalarını düzenlemek için kullanılır. Gelişmiş programlama özelliklerine sahip değildir. Herhangi bir derleme veya hata ayıklama işlevi yoktur.  Notepad, Sublime Text, Visual Studio Code gibi.
+    
     IDE(Entegre Geliştirme Ortamı), yazılım geliştirme ortamıdır. Gelişmiş programlama özelliklerine(derleme, hata ayıklama, kod tamamlama, proje yönetimi gibi birçok aracı içerir.) sahiptir. Programlama dili veya platforma özgü geliştirme araçları sağlar. Derleme ve hata ayıklama özellikleri sayesinde kodunuzu geliştirmek ve hataları düzeltmek için birçok araç sağlar. Visual Studio (C#, VB.NET gibi Microsoft teknolojileri için), Eclipse (Java için), IntelliJ IDEA (Java, Kotlin, vb. için) gibi.
 
 👋 7 - Project ve Solution Kavramları
@@ -203,21 +210,52 @@ Herhangi bir proje kaynak  kodlarıyla birlikte inşa edilip piyasaya sunulmadan
 
 👋 18 -  Paket İle Referans Arasındaki Farklar Nelerdir ?
 
+Projede işlemler yapmayı sağlayan projeyle ilgili kütüphane/paket/referans ekleme/çıkarma işemlemlerini yapmamızı sağlayan proje modifikasyon komutlarıdır.  “add package (paket ekleme)” , “remove package” , “add referance” gibi. 
+
+Paket ve kütüphane "NuGet" dediğimiz aynı havuzdan gelir. 
+
+Referanslar, önceden yazılmış "dll" çıktılarıdır. Yani fiziksel olarak elimizde bulunan .dll dosyalarıdır. "dll" dosyası, başka bir yazılım tarafından kullanılabilecek olan çıktıdır. Ama derleme sonucu oluşan çıktıyı bir başka yazılım değil, bir son kullanıcı kullanacaksa bu çıktılar da "exe" uzantısına sahip çıktılardır. 
+
+"dll" dosyalarına referans ama NuGet dediğimiz havuzdaki farklı kütüphanelere(uzaktan, internetten çektiklerimiz) paket diyoruz. Tabi bir yandan referans olanlar da bizim için paket mahiyetinde oalbilirler ama genel anlamda teknik olarak referans ve paket bu şekilde ayrılmaktadır. 
+
+Elinde fiziksel bir dosya var ve uzantısı dll ise, bunu projene eklerken referans olark eklersin. Eğer sen NuGet denilen havuzdan bir kütüphaneyi uygulamana çekeceksen onu da paket olarak çekersin.
+
+NuGetta bulunan farklı kütüphanelerin toplandığı yere ise paket deriz.
+
+  👉 !  Kütüphane ve paket farkı :
+
+  Kütüphane genellikle kodun bir parçasını ifade ederken, paket genellikle bu kütüphaneleri, araçları veya kaynak dosyalarını toplu olarak içeren bir bileşeni ifade eder. Kütüphaneler belirli bir işlevi yerine getirirken, paketler genellikle bir projenin dışa bağımlılıklarını yönetmek ve entegre etmek için kullanılır. 
+
+👉 !  NuGet : 
+
+.Net geliştiricilerinin kullanabileceği geniş bir kütüphane ve paket deposudur. Bu depoda, .Net uygulamalarında kullanılabilecek çeşitli kütüphaneler, araçlar ve bileşenler bulunur. Bu nedenle NuGet'ta bulunan farklı kütüphanelerin toplandığı yere "paket deposu" yada "paket" denir. NuGet, Visual Studio ve diğer geliştirme ortamları ile entegre çalışır ve geliştiricilere kolayca paket arama, indirme, yükleme ve güncelleme imkanı sunar. 
+
+👉 !  Bir örnek vererek daha anlaşılır şekilde açıklayalım: 
+"Python" programlam dili için "numpy" bir pakettir ve bu paket "math" kütüphanesi içerir. "math" kütüphanesi, matematiksel işlemler için hazır fonksiyonları barındırır. İşte bu örneğe göre, "numpy" bir paketken, "math" bir kütphanedir ve bir paket altında birden çok kütüphane/modül bulunabilir. 
+
+![18-1](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/e3225e14-dbab-474d-9d49-306016eab103)
+
+👉 ! Projeye paket ekleme , derleme ve referans işleyişi/ilişkisi : (sor)
+
+* Proje oluşturulduğunda, genellikle bir ".csproj" dosyası oluşturulur. Bu dosya, projenin yapılandırma ve bağımlılıklarını tanımlar. Bu aşamada herhangi bir NuGet paketi eklenmez.
+* Projeye NuGet paketleri eklemek için, ".csproj" dosyasına "<PackageReference>" öğeleri (Bir projenin başka bir projeye veya bir kitaplığa bağımlı olması durumunda, bu bağımlılıklar referanslar aracılığıyla belirtilir. Projede bu bağımlılıkları/paketleri kullancam dediğim kod satırıdır.) eklenir. Bu öğeler, projenin kullanması gereken paketleri ve bunların sürümlerini belirtir. 
+* Proje derlendiğinde/build olduğunda , proje bağımlılıkları kontrol edilir ve bu paketler NuGet havuzundan indirilir. Ancak henüz projeye dahil edilmemiştir, dolayısıyla bu aşamada sadece proje derleme süreci başlatılır. Bu aşamada, referanslar projenin bir parçası haline gelir ve projenin derleme sürecine dahil edilirler.
+* Derleme esnasında NuGet havuzunda belirtilen paketler indirilir ve projeye yüklenir. Bu işlemi ".csproj" dosyasındaki "PackageReference" 'ye göre yapılır.
+* Proje derlenirken paketler de dahil edilir dedik. Derleme işlemi tamamlandığında, projenin çalışabilir çıktı dosyaları oluşturulur.
+* Derlenmiş çıktı dosyaları, projenin paketlerini/bağımlılıklarını içerdiği için "referans" olarak adlandırılır.Bu referanslar, projenin derlenmiş çıktı dosyalarına dahil edilir ve projenin bağımlılıklarını temsil ederler.
 
 
+👋 23 - Programlamaya Başlarken Temel İlkeler
 
+Bir dil öğreneceğiz, bu dil beşeri bir dil olmasada makinelerle ve bilgisayarlarla iletişim kurmamızı sağlayacak bir dildir.
 
+Nasıl ki beşeri dilde cümle kurarken cümlenin öznesi yüklemi varsai, programlama dilinin de kendine has prensibi, geleneği vardır. İleride design pattern sayesinde düzgün kod yazacağız.
 
+Her programlama dili başlangıçta bir gelenek ve kabulle yola çıkar. Biz bunlara prensipler diyoruz. Belirli prensipler/kurallar dahilinde hareket ederseniz o dil üzerinde edebiyat yapmanız/kendinizi/çözümünüzü ifade etmeniz kolaylaşacaktır.
 
+Programlamada temel ilkelerimiz vardır. Bu ilkeler olmazsa olmadır. 
 
-
-
-
-
-
-
-
-
+İlke,
 
 
 
