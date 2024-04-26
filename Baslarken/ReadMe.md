@@ -249,27 +249,113 @@ NuGetta bulunan farklı kütüphanelerin toplandığı yere ise paket deriz.
 
 Bir dil öğreneceğiz, bu dil beşeri bir dil olmasada makinelerle ve bilgisayarlarla iletişim kurmamızı sağlayacak bir dildir.
 
-Nasıl ki beşeri dilde cümle kurarken cümlenin öznesi yüklemi varsai, programlama dilinin de kendine has prensibi, geleneği vardır. İleride design pattern sayesinde düzgün kod yazacağız.
+Nasıl ki beşeri dilde cümle kurarken cümlenin öznesi yüklemi varsa, programlama dilinin de kendine has prensibi, geleneği vardır. İleride design pattern sayesinde düzgün kod yazacağız.
 
 Her programlama dili başlangıçta bir gelenek ve kabulle yola çıkar. Biz bunlara prensipler diyoruz. Belirli prensipler/kurallar dahilinde hareket ederseniz o dil üzerinde edebiyat yapmanız/kendinizi/çözümünüzü ifade etmeniz kolaylaşacaktır.
 
-Programlamada temel ilkelerimiz vardır. Bu ilkeler olmazsa olmadır. 
+Programlamada temel ilkelerimiz vardır. Bu ilkeler olmazsa olmadzır. 
 
-İlke,
+İlke, sosyolojik açıdan yaparsanız doğru yapmazsan yanlış demek değildir/sıkıntı yoktur.
 
+İlkeler genellikle değişmezler. Çünkü evrensel doğrulardır/kabuldürler. Geneleneksel bir anlayışın üzerine oturmuş doğrular değildir. Bunlar genel/evrensel doğrulardır. Ne zamana yaparsan yap, ne zaman uygularsan uygula her daim bir doğruluğu vardır.
 
+Temiz kod yazma sanatında prensipler bizim için olmazsa olmazımızdır. Prensipsiz temiz kod yazamazsınız.
 
+Bir programcı ilkeli birisi olmaldıır. 
 
+👋 24 - Programlamaya Başlarken Temel İlkeler - Don't Repeat Yourself
 
+Bir programcı kendini tekrar etmez.
 
+Bir programcı komutları/kodları sürekli tekrar etmektense öğrendiği yapılarla bunu daha analitik çözüm haline getirip tekrarlı değilde tek seferli hale getirebilmelidir. 
 
+Kodu tek elden yönetmek içn çabalayın. Çünkü her yerde aynı algoritma çalışacakatır ve bir gün algoritmayı değiştirmek istersen tekrar erden ehr noktada değişiklik yapman büyük bir sıkıntı olacaktır. Bunun için tek bir yerde algoritma yazıp o yazdığını her yerde kullanacak şekilde bir tasarıma geçebilmen lazım. Değişiklik olduğu zaman bir noktayı değiştirirsin onu kullanana her yere o değişiklik yansıyacaktır. İşte doğru tasarım budur.
 
+Hiçbir algoritmayı ezberlemeyin, bir öğrendiğiniz algoritmayı sürekli oalrak aynı şekilde kullanmayın. Bu yaratıcılık zekanızı öldürür. O anda soruna çözüm getirecek algoritmalar bulmak daha doğru/geliştirici/canlıdır. 
 
+Aynı kodun aynı blokta tekrar tekrar yazılmış olmamasına özen gösterin.
 
+Kodda bir tekrar varsa bunu daha analitik nasıl kodlayabilirm diye düşün. Tekrar eden o kodu düzelt. İşte buna refactoring denir. Yani kodu düzeltme, yeniden düzgün/tekrara düşemeyecek, şekilde yazma.
 
+👋 24 - Programlamaya Başlarken Temel İlkeler - Anlamlı İsimlendirme
 
+Bir isimlendirme yaparken anlamlı değilde saçma sapan bir isim verirsen bu kodun gelişimine ciddi manada zarar verir. Lise matematikte görülen x,y değişkenlerini yazılımda isimlendirme kullanmayacağız. Onun yerine değeri ifade eden mantıklı/anlamlı isimlendirme yapılacak.
 
+👋 26 - Main Fonksiyonu Nedir ? 
+
+Bir programda zorunlu olması gereken fonksiyondur.
+
+Oluşturduğumuz tüm uygulamalarda bir ana fonksiyon olması gerekiyor. Ve o ana fonksiyonun adı Main fonksiyonudur. 
+
+Uygulamaların altında Program.cs adında bir dosya vardır. Program.cs dosyasını programnın başlangıç dosyası gibi düşünebilirsiniz.
+
+Başlangıç kodlarının bulunduğu dosya Program.cs dosyasıdır. 
+
+Uygulamalarda Program.cs dosyası başlangıç kodlarının buunduğu yani uygulamaın ayağa kalkabilmesi için başlangıç kodlarının bulunduğu bir dosyadır.
+
+.cs uzantılı dosyalar C#' a karşılık gelir.
+
+Main fonksiyonu, uygulama ayağa kalktığında işletim sistemiyle iletişim kurabilecek metodun ve bu metot içerisinde başlangıca dair gerekli komutların inşa edildiği bir yapılanmadır. 
+
+Siz bir uygulamayı çalıştırdığınızda b uuygulamanın bulunduğu işletim sistemiyle iletişimini sağlayan fonksiyona main fonksiyonu diyoruz.
+
+Başlangıç kodlarını biz Main içnde yazarız. Bir uyugulama ayağa kalkarken işletim sistemiyle ilişkiyi kurar. İlk ilişkiyi kurduğundan doalyı ilk tetiklenen fonksiyonda Main fonksiyonudur. 
+
+Herhangi bir uygulamada Main fonksiyonu sadece ve sadece bir kere olmak zorundadır. Bşaşka bir yerde bir dosyanın içinde Main isimli fonksiyon bulunamaz.
+
+Main fonksiyonu uygulamada Program.cs dosyası içinde Main adında bulunur.
+
+Main fonksiyonu uygulama adına işletim sistemiyle iletişim kurar.
   
+Main fonksiyonuyla işletim sistemiyle iletişim sağlanır. Bu iletişim sayesinde bizim uygulamamıza işletim sistemi veri gönderebiliyor. Bizde bu veriyi Main üzerinden yakalayıp içeride işleyebiliriz.
+
+İşletim sistemi veri gönderirken uygulamanın içindeki Program.cs içindeki Main fonksiyonuna veri göndereceğini biliyor.
+
+Dolayısıyla uygulamanın içinde Main fonksiyonu yoksa ayağa kaldıramazsınız/derleyemezsiniz/hata alırsınız. Projenin derlenip çalıştırılabilmesi için Main fonksiyonu olmak zorundadır. 
+
+![26](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/65852c84-61da-43b3-bf9d-9f2e4bbdfb6c)
+
+👋 27 - Dotnet Run Value Yapısı İle Uygulamayı Çalıştırma ve Args Parametresine Değer Gönderme
+
+Main fonksiyonu ayağa kalktığı anda işletim sistemiyle kontağı kuran bir yapılanmaya sahiptir.
+
+Metotlar/fonksiyonlar parametre alan yapılardır.
+
+Dotnet CLI ile uygulamayı çalıştırırsak buradaki uygulamaya args parametresine değer gönderip uygulama içinde de bu değeri yakalayıp/kullanabiliyorum.
+
+![27](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/17b864cf-5b6b-4a06-971f-f05279b19f45)
+
+![27-1](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/7af6cbba-6a33-4279-b6f3-39674f007226)
+
+Örnekte, Dotnet CLI/terminal ile "dotnet run yasemin" komutu çalıştırıldığında, işletim sistemi bu komutu algılar ve uygulamayı çalıştırır. "yasemin" argümanı, işletim sistemi tarafından main fonksiyonuna iletilir. Main fonksiyonu bu argümanı, paremtre olarak karşılar. 
+
+👉 ! İstediğin kadar değeri arada boşluk bırakarak göndwerebilirsin ve yakalayıp/kullanmak için "args[0]","args[1]" şeklinde index numaralarını değiştirerek kkullanabilirsin. 
+
+Main fonksiyonu parametre kısmında, komutta gönderilen değer olan "yasemin" yakalanır ve uygulamada kullanılabilir. Main fonksiyonu içinde “Console.WriteLine(args[0]);” yazılırsa, çıktı "yasemin" olur.
+
+👉 ! Dolayısıyla, Main fonksiyonu çift yönlü olarak, işletim sistemi ve uygulama arasında çalışır. Uygulamadan işletim sistemine veri gidip işlemler yaptırılabilir, aynı şekilde işletim sisteminden gelen komutlarla uygulamada işlemler yapılabilir. 
+
+👉 ! Komut istemi, kullanıcıların işletim sistemleriyle etkileşim kurmalarını sağlayan bir arayüzdür. Kullanıcının işletim sistemi üzerinde komutlar çalıştırmasına ve dosya yönetim işlemleri gibi temel işlemleri gerçekleştirmesine izin verir. Windows işletim sistemi için komut istemi genellikle "cmd" veya "Command Prompt" olarak adlandırılırken, Linux ve macOS gibi Unix tabanlı işletim sistemlerinde "Terminal" olarak adlandırılır.
+
+👉 ! CMD (Command Prompt), Windows işletim sisteminde kullanılan bir komut istemi programıdır.
+
+👉 ! .NET CLI (Command Line Interface), .NET Core ve .NET 5 ve sonrası sürümlerinde bulunan komut satırı arayüzüdür. Geliştiricilere .NET uygulamaları oluşturma, derleme, yayınlama, paket yönetimi ve diğer geliştirme işlemlerini gerçekleştirmek için komut satırı aracılığıyla bir dizi komut sağlar. 
+
+👉 ! CMD, Windows işletim sistemi için genel bir komut istemi programıdır ve .NET CLI gibi özel bir geliştirme aracı değildir. .NET CLI ise .NET geliştirme araçları için özel olarak tasarlanmış bir komut satırı arayüzüdür ve .NET uygulamalarının geliştirme sürecini yönetmek için kullanılır.
+
+👋 28 - Top Level Statements Özelliği
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
