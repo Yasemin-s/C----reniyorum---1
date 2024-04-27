@@ -207,6 +207,7 @@ Uygulama bağımlılıklarının dll'lerini verir.
 
 Herhangi bir proje kaynak  kodlarıyla birlikte inşa edilip piyasaya sunulmadan önce bu porjenin kaynak kodlarını biz gizlemek isteriz. Bazen algoritmayı piyasaya sunmak istemeyiz. Dolayısıyla böyle bir durumda projeyi yayınlanabilir yani piyasaya sunulabilir hale getirmemiz lazım, eğer ki bu proje bir web uygulaması ise bu projeyi hosting'e atabilir yayınlanabilir hale getirmemiz gerekir. Sonuç olarak, kaynak kodları/dosyaları bizde olacak şekilde biz bunların çıktılarını alıp yayınlayabiliyoruz. İşte bunu yapmamızı sağlayan Publish komutudur. Ayrıca bir uygulama başka bir uygulamayı kullanıyorsa, başka bir paketi yada kütüphaneyi kullanıyorsa ona bağımlıdır. Orada bir bağımlılık söz konusudur. Dolayısıyla Publish işlemi bu bağımlılıkları da referanslayan bir dosya verecektir. 
 
+👉 ! Editörler genellikle derleyici içermedikleri için derleme işlemi yapamazlar. Ancak bazı eklentilerle bu tür editörlerin yetenekleri geliştirilebilir. 
 
 👋 18 -  Paket İle Referans Arasındaki Farklar Nelerdir ?
 
@@ -343,21 +344,109 @@ Main fonksiyonu parametre kısmında, komutta gönderilen değer olan "yasemin" 
 
 👉 ! CMD, Windows işletim sistemi için genel bir komut istemi programıdır ve .NET CLI gibi özel bir geliştirme aracı değildir. .NET CLI ise .NET geliştirme araçları için özel olarak tasarlanmış bir komut satırı arayüzüdür ve .NET uygulamalarının geliştirme sürecini yönetmek için kullanılır.
 
-👋 28 - Top Level Statements Özelliği
+👋 28 - Top Level Statements  (C# 9.0) Özelliği
+
+Biz herhangi yeni bir kouyla ilgili test komutları çalıştıracak olabiliriz. Bir deneme yapmam lazım ve bir projeye ihtiyacım var. Böyle bir durumda developer gider Console uygulması açar ve orada deneme yapar.
+
+Basit bir denemede bile birçok greksiz komuta maruz kalırız. Proje oluşturulduğunda default olarak (boilerplate-basmakalıp) kodlar gelerek istemsiz kodlara maruz kalınabilir. C# 9.0 ile gelen top level statements özelliği sayesinde, main fonksiyonu kullanmadan "using System;" ve "namespace" blokları arasına istenen kodlar yazılıp çalıştırılabilir. Komutlar/kodlar derleme esnasında Main fonksiyonu içerisine alınacaktır.
+
+👉 ! Bu özellik ile main fonksiyonu kullanılması developer'ın isteğine bırakılmıştır. Main fonksiyonu kullansanda kullanmasanda arka planda varsayılan oalrak bir main fonksiyonu olacaktır. Normalde main fonksiyonu olmadan bu kod derlenmezdi ama C# 9.0 ile gelen bu özellik sayesinde bu şekilde kod inşa etmeye izin veriyor. 
+
+Kurallar:
+
+* Kodlar sadece, using blokları ile namespace arasında yazılabilir.
+* Bu işlem/özellik sadece Program.cs dosyasında kullanılabilir. Farklı bir dosyada denereseniz program hata verir.
+
+Kodları, Main fonksiyonu içinde yazmak zorunda değilsin derlenme sırasında sistem otomatik Main fonksiyonu içine alacaktır. İçine alacağı kodlar, using blokları ve namespace arasıdaki kodlar için geçerli olacaktır. Buradaki kodları kabul edecek ve Maine'e direkt onları yazacaktır.
+
+Uygulama derlenirken Program.cs dosyasında varsa Top Level Statements özelliği bu dosyaya özel algılayavak ve ilgili alana yazılan kodları Main içerisinde yorumlayacaktır. Bunun dışında zaten bu özelliği başka bir dosyada kullanamayacağımzıdan dolayı dadece Program.cs dosyasına has bir özelliktir.
+
+👋 29 - Yorum Satırları ve Region
+
+Programlama yaparken yazdığımız kodlar karışık ya da anlaşılması güç olabilir. Bu durumlarda kodları anlaşılabilir hale getirerek açıklamak yada önemli gördüğümüz kısımları not almak isteriz.
+
+Yazmış olduğum kodu bir şekilde izah etmem/açıklamam gerekebilir. İşte bunu yorum/açıklama satırı ile yaparız.
+
+Biz yorum satırı kullandığımızda, derleme esnasında "//" bu operaör ile satırın bir yorum satırı olduğu anlaşılacak ve burası derlenmeyecektir. Yani "//" kısımdaki yazılar kod olarak gçrünmeyecektir.
+
+Genellikle açıklama/yorum satırı kullandığımızda kodun izahetini yaparız/açıklarız. Küçük/ufak/kısa açıklamalar yaparız, tutup da destan yazmayız/yazmamız doğru olmaz.
+
+Açıklama/Yorum Satırları:
+
+Kodun niteliğini, anlaşılabilirliğini, kalitesini arttırabilmek için kullanılır.
+Kritik noktalarda ve özet olarak kodları izah etmeliyiz.
+// Tek satırlık yorumlarda kullanılır.
+/* Çok satırlı yorum alanı */
+Nerelerde yorum satırları kullanılır ? 
+İstediğin her yerde, kod konseptini ve semantik akışı bozmammak kaydıyla, yorum satırı kullanıp açıklama yazabilirsin. 
+
+Region : 
+
+Kod dosyasını kategorik hale egtirmemizi sağlayan ön işlemci komutudur. 
+
+Ön işlemci komutu editörün yorumlayabildiği bir yapılanmadır.
+
+Developer'ın yazmış olduğu kodu daha net görmesini ve kategorize etmesini sağlar.
 
 
+👋 30 - Todo Nedir ? 
 
+Kodun içine alınan notlara çabuk erişebilmemizi sağlayan bir özelliktir. 
 
+Açıklama yazıyoruz ama bu açıklama oradaki kodu izah etmekten ziyade orada yapılması gereken eksik bir şeyi izah eder.
 
+Programlamada bazen kodlarda unutulan yada yapılması gereken şeyler gözden kaçırılmış/düşünülememiş olabilir. Bunları belirtmek için bir hatırlatıcı gibi "todo" keywordü kullanılır.  
 
+Projede birçok dosya olursa ve birçok todo keywordü kullanılmışsa daha sonradan bu todo'ları bulmak bizim için zorlaşacaktır. Bu durumda Visual Studio da üst sekmeden "View > Task List" penceresi çaılır ve tüm projelerde kullanılan todo'lar bizim için listelenir. Bu şekilde hangi dosyada ve nerede todo kullanılmış rahatlıkla erişilir. Yani bu özellik kod içinde aldığımız notlara hızlı bir erişim sağlayan bir özelliktir.
 
+Bu süreç, compiler tarafından değil editör tarafından sunulan bir hizmettir. Compiler buradaki sorumluluğu üstlenmez. 
 
+👉 ! //todo ornek , burada todo keyword olarak algılanır ve ona göre hareket edilir.
+//todo2 ornek, burada ise todo2 şeklinde yazıldığı için todo keyword olarak algılanamaz ve program hata verir. -?
 
+👋 31 - Debbugging Nedir ? 
 
+Debugging, hata ayıklamaktır. Programın hatalarını yok etmeye yönelik kodları gözden gerçirme aktiviteleridir. 
 
+Daha çok yazılan kodlarda mantıksal bir hatanın var olduğu düşünülüyorsa debugging işlemi ile kodlar satır satır incelenip hata ayıklamaya çalışılır. 
 
+Formülde bir hata olduğunda yani genel grammerde bir hata yok ama formülde yaptığın hatayı yakalayabilmen ve çözebilmen için debugging dediğimiz tekniği kullanmak gerekir.
 
+Debugging, kodun akışı esnasında kodu okuyabilmemizi ve gözlemleyebilmemizi sağlamaktadır.
 
+Debug, debug etmek, debugging hepsi aynı anlamı ifade eder.
 
+👋 32 - BreakPoint Nedir ve Nasıl Yapılır ? 
 
+Break Point, işaretlenen kodun debug edilmesini sağlayan bir teknolojidir/yapıdır.
+
+Debug'ın amacı, bir koddaki hatayı ayıklamak, bir koddaki yapılanmayı daha da efektif hale getirmek, var olan mantısal hataları rahat bir şekilde temizleyebilmektir.
+
+Bir kodu Debug'a tabi tutmak demek, ilgili kodu varsayılan olarak debug modda çalıştırmak demektir.
+
+![32-1](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/f077365e-c989-435f-b4a0-80aefd6f7cba)
+
+İlgili kod satırının en başına konulan kırmızı nokta, break point'i ifade eder.
+
+Break Point konulup proje çalıştırıldığında konsept konsept okunan kodlar işaretli olan satıra geldiğinde durur/ilerlemez ve o kısımdan başlayarak istediğimiz kadar ilerleterek, olan değişiklikleri/yönlendirmeleri incelememize olanak verir. Eğer f10' a basılırsa debug modda kodlar okunmaya devam edilir, f5' e basılırsa debug moddan çıkarılıp sadece sonucun ekranda gösterilmesi sağlanır.
+
+👉 ! Bir projeyi çalıştırdığımızda varsayılan olarak debug modda çalışır ve Break Point kullanılırsa kodların davranışları incelenir.
+
+👉 ! Debug modunda, breakpoint’ler kodun belirli bir noktasında durmasını sağlar. Debug modunda, breakpoint’ler debug işlemine yardımcı olur.
+
+👉 ! Debugsız modda, breakpoint’ler kodun belirli bir noktasında durmasını sağlayamazlar, debug' ı yakalayamazlar. Yani kodun akışı Break Point noktasına geldiği zaman debugging başlamayacaktır.
+
+👋 33 - Watch Penceresi
+
+Bir algoritmayı debug ederken o algoritma içinde bulunan değişkenlerin değerlerini daha hızlı bir şekilde görmemizi sağlayan penceredir. 
+
+Debug modda Break Point koyulmuş kodlar incelenirken değişkenlerin değerlerini görmek için değişken adına sağ tıklanıp "Add Watch" seçeneği ile pencere açılıp değerine bakılabilir.
+
+![33-1](https://github.com/Yasemin-s/C----reniyorum---1/assets/118223063/86a55c11-17f3-42e1-ac66-4b5f482abdc1)
+
+👋 34 - Debugsız Uygulama Nasıl Çalıştırılır ? 
+
+Bir uygulamayı direkt ayağa kaldırıp çalıştırdığımzıda varsayılan olarak debug modda çalışır demiştik.
+
+Debug zaman açısından maliyetli bir süreötir. Bazen hızlı testler yapabilmek için yazılımın derlenmesi ve çıktı vermesi istenir. Bu durumda projeyi debugsız modda çalıştırmak gerekir. Visual Studio'da üst sekmeden "Debug > Start Without Debugging(f5)" ile proje debugsız modda çalıştırılabilir.
 
