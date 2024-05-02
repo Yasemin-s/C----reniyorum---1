@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Başlarken", "Başlarken", "{9D75368A-8705-4597-B6BA-9779C12BBBFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1-Başlarken", "1-Başlarken\1-Başlarken.csproj", "{F35295C1-8E1F-48F0-B501-7258EC0FCBF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baslarken", "Baslarken\Baslarken.csproj", "{E9D75658-3876-4A9C-A73F-BBB24CD0E7FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-Değişken Nedir", "2-Değişken Nedir\2-Değişken Nedir.csproj", "{E47B022C-DA02-4656-91B4-4AD095B8D72D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3-Kod Konsepti Nasıl Yazılır", "3-Kod Konsepti Nasıl Yazılır\3-Kod Konsepti Nasıl Yazılır.csproj", "{1DAFEA15-97D5-45E0-AB41-265D9471A324}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4-Tür Dönüşümleri (Type Conversion)", "4-Tür Dönüşümleri (Type Conversion)\4-Tür Dönüşümleri (Type Conversion).csproj", "{7C2BFCE5-D3AB-41AE-A154-AE77D3DC5AF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +17,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E9D75658-3876-4A9C-A73F-BBB24CD0E7FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9D75658-3876-4A9C-A73F-BBB24CD0E7FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9D75658-3876-4A9C-A73F-BBB24CD0E7FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9D75658-3876-4A9C-A73F-BBB24CD0E7FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F35295C1-8E1F-48F0-B501-7258EC0FCBF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F35295C1-8E1F-48F0-B501-7258EC0FCBF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F35295C1-8E1F-48F0-B501-7258EC0FCBF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F35295C1-8E1F-48F0-B501-7258EC0FCBF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E47B022C-DA02-4656-91B4-4AD095B8D72D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E47B022C-DA02-4656-91B4-4AD095B8D72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E47B022C-DA02-4656-91B4-4AD095B8D72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E47B022C-DA02-4656-91B4-4AD095B8D72D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DAFEA15-97D5-45E0-AB41-265D9471A324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DAFEA15-97D5-45E0-AB41-265D9471A324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DAFEA15-97D5-45E0-AB41-265D9471A324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DAFEA15-97D5-45E0-AB41-265D9471A324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2BFCE5-D3AB-41AE-A154-AE77D3DC5AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2BFCE5-D3AB-41AE-A154-AE77D3DC5AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2BFCE5-D3AB-41AE-A154-AE77D3DC5AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2BFCE5-D3AB-41AE-A154-AE77D3DC5AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{E9D75658-3876-4A9C-A73F-BBB24CD0E7FB} = {9D75368A-8705-4597-B6BA-9779C12BBBFF}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {920AD4C7-7FC3-4FDE-9A97-6C6F08A68480}
+		SolutionGuid = {16C15349-4E8B-42B3-BDE0-EDE39F9A0A7A}
 	EndGlobalSection
 EndGlobal
