@@ -237,28 +237,60 @@ Double : İlgiil değerin sonuna d yada D getirilir.  "3.14d" yada "3.14D" yada 
 
 Decimal : İlgili değişkenin sonuna m yada M getirilir. "3.14m" yada "3.14M" gibi.
 
-👋 49 - 
+👋 49 - (_a,_b) = (a,b) Tuple Türüyle Değer Atama
 
+Tek bir syntax ile birden fazla değişkeni tanımlamamızı sağlayan bir nesnedir. 
+(int a, int b, type c, type d) z; burada tuple değişken tanımlaması yapılmıştır. z içinde , int type vs. olmak üzere birden fazla farklı yada benzer türde değişken tanımı yapılır. Yani tuple birden fazla değişken tutar ve bu değişkenlerinde değerleri olacak. Bunlasr yine stackte tutulacak. 
 
+👉 ! Tuple, değişkene değer atama türüdür.
 
+Şöyle ki, C# dilinde tuple'lar kullanılarak birden fazla değeri tek bir değişken içinde gruplayabiliriz. (int a, int b) c = (3,5); Bu durumda, c adında bir tuple tanımlanır ve içinde ik tam sayı değeri saklar. Bu tuple, stack belleğinde oluşturulur. a ve b isimli iki tamsayı değişkeni gibi davranır ve tuple içinde 3 ve 5 değerleri atanır. C#'ta tuple'lar genellikle küçük veri yapılarını temsil etmek için kullanılır ve bu nedenle genellikle stack belleğinde saklanırlar. Ancak, büyük tuple'lar veya tuple'lar bir koleksiyonun içinde kullanıldığında heap belleğinde saklanabilirler. Tuple'ın boyutu ve içeriği ramde saklanacak davranışı etkileyebilir. 
 
+Tuple nesnesi, içine bir veya dah afazla değişken tanımlayabildiğimiz tek bir tanımlık nesnedir. (int a, string b) c = (5,  "ali"); burada atamalar da sırayla oluyor. a'ya be b'ye erişim sağlamak için c. ile erişiyoruz. 
 
+![49](https://github.com/user-attachments/assets/f992b5f4-cb8b-49eb-8a78-f9c85478356c)
 
+Tuple, C# 7.0 programlama dilinde bir veri yapısıdır. Tuple, farklı veri tiplerinden oluşan, sabit uzunlukta ve değerleri değiştirilemeyen(immutable) bir koleksiyondur.
 
+👉 ! Tuple bir nesnedir. C#'ta her şey bir nesnedir ve Tuple da System.Object sınıfından türemiştir.
 
+Değerleri değiştirilemezdir. (immutable)
+Farklı veri tipleri içerebilir.
+Eleman sayısı oluşturulduğunda sabittir.
+Elemanlara Item1, Item2... şeklinde erişilir.
 
+Tuple<int, string> person = new Tuple<int, string>(25,"ali );
+int age = person.Item1;
 
+ValueType adında struct kullanılmaya başlayınca;
+(int Age, string Name) person = (25, "ali");
+Console.WriteLine($"Age: {person.Age}");
 
+Maximum 8 öğe içerebilir. Daha fazlası için iç içe Tuple'lar kullanılabilir.
+Orijinal Tuple'larda öğelere anlamlı isimler verilmez. Item1, Item2 ...
 
+Tuple, bir referans tipidir. Yani heap belleğinde saklanır. Bu, büyük miktarlarda kullanıldığında performans açısından dezavantaj olabilir.
 
+✨ Tuple'ın Nesne Olması : Tuple bir nesnedir, ancak sadece System.Object'te türediği için değil. C#'ta her şey(değer tipleri dahil) en temel seviyede Object sınıfından türer. Tuple bir nesnedir çünkü, 
+Referans tiplidir.
+Heap'te depolanır.
+Garbage collection'a tabidir.
+ 
+✨ Koleksiyon ve Nesne Farkı : 
+Nesne, veri ve davranışalrı(metotları) kapsülleyen bir yapıdır.
+Koleksiyon, birden fazla nesneyi veya değeri içeren bir veri yapısıdır. 
+Yani bir koleksiyon aynı zmanada bir nesnedir. Tuple, hem bir nesne hem de bir koleksiyon olarak düşünülebilir.
+ 
+✨ Tuple'ın Heap'te Tutulması :
+Tuple heap'te tutulur. Çünkü, 
+ * Referans Tipi - Tuple bir referans tipidir. C#'ta tüm referans tipelri heap'te depolanır.
+ * Değişken Boyutu - Tuple'lar farklı boyutlarda olabilir ve farklı tiplerde veriler içerebilir. Heap, bu tür değişken boyutlu ve karmaşık yapılar için uygundur.
+ * Yaşam Süresi - Heap'teki nesneler, referansları olduğu sürece yaşarlar ve garbage collector tarafından yönetilirler. Bu, Tuple'ların metot çağrıları arasında bil evarlıkalrını sürdürmelerine olanak tanır.
+ * Esneklik - Heap dinamik bellek tahsisi sağlar, bu da Tuple gibi yapıların runtime'da oluşturulmasına ve yönetilmesine izin verir.
 
+✨ Stack'te Tutulmamasının Nedenleri:
+Stack, genellikle sabit boyutlu ve kısa ömürlü veriler için kullanılır.
+Stack'in boyutu sınırlıdır ve büyük veya karmaşık nesneler içi uygun değildir.
+Stack'teki veriler metot çağrıalrı arasında otomatik olarak temizlenir, bu da Tuple gibi daha uzun ömürlü olabilen yapıar için uygun değildir.
 
-
-
-
-
-
-
-
-
-
+👉 ! C# 7.0 ile birlikte gelen valueTuple, Tuple'ın bir değer tipi versiyonudur ve stack'te tutulur. 
