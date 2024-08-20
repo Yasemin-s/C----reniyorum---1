@@ -294,3 +294,167 @@ Stack'in boyutu sınırlıdır ve büyük veya karmaşık nesneler içi uygun de
 Stack'teki veriler metot çağrıalrı arasında otomatik olarak temizlenir, bu da Tuple gibi daha uzun ömürlü olabilen yapıar için uygun değildir.
 
 👉 ! C# 7.0 ile birlikte gelen valueTuple, Tuple'ın bir değer tipi versiyonudur ve stack'te tutulur. 
+
+👋 50 - Literal Düzenlemeler C# 7.0
+
+Kompleks sayısal ifadelerin "_" ile düzenlenmesini sağlayan bir özelliktir. 
+int sayi = 1_000_000_000 gibi
+
+👋 51 - Değişken Türüne Uygun Default Değer Atama
+
+Tüm değişkenlerin bir default değeri vardır. Default değeri nerde, nasıl, ne şekilde atandığını daha sonra class yapılanmalarında göreceğiz. 
+İleride oop dediğimiz yaklaşşımı gördüğümüzde class içinde tanımlanan değişkenlerin default değerleri otomatik olarak atanır.
+
+👉 ! Null değersiz demektir ve değersizle boş arasında fark vardır. Boş, boştur ama yine de bir karakterdir(boşluk/space tuşunun oluşturduğu karakter). Null, değeri yok demektir.
+
+👉 ! string = null
+     char = "\0"
+     sayısal ifade = 0
+     bool = false
+     
+👉 ! Normalde bu varsayılan değerler, class içinde otomatik atanmaktadır. Ama main içinde atanmaz. Bir türün default değerini "default(ogrenilmek_istenen_tur)" olarak görebilirsiniz.
+
+👉 ! Main içinde oluşturulan değişkenlerin ilk değerlerini manuel olarak atamaya  özen göstermeliyiz.
+
+👋 52 - Default Literals C# 7.1
+
+"default(ogrenilmek_istenen_tur)" bu kullanım yerine, değişkeninde belli olduğu "default" kullanımı yeterlidir. 
+string ad = default; gibi bir kullanım. 
+
+👋 53 - Tanımlanmış Bir Değişkenin Değerini Okuma
+
+Bir değişkenin değerinin okunabilmesi için, önce değişkenin tanımlanmış olması daha sonra atamasının yapılması gerekiyor. Değişken değerini elde edebilmek için değişkenin isminden faydalanılır. 
+
+👉 ! Bir değişken adı, assign operatörünün sağında yada metotların parametrelerinde çağırılıyorsa, ilgili değişkenin değeri gönderilir.
+
+Mesela "Console.WriteLine(x);" veya "int y = x;" burada, işte bu durumda x yazılan yerlere x'in değeri gönderilecektir. x'in kendisi çağrılsaydı(bellek adresi gider) x, değer almaya gidecekti. Amma burda x'in değeri çağırılıyor. 
+
+👉 ! Console.WriteLine() ekrana çıktı veren, ekrana bişey yazmamızı sağlayan bir komuttur.
+
+👉 ! Console bir sınıftır/class'tır. Bu sınıfın üzerinden direkt bir member'a erişilebildiği için static bir yapılanmadır. Bu static member'ın bir metot olduğunu buna erişirkende static yapılanmadan faydalanıp erişebildiğimizi .'nın modifier access operatörü olduğunu metotların parametre alabildiğini ileride göreceğiz.
+
+👋 54 - Tanımlanmış Bir Değişkenin Değerini Okuma - Kritik 1 
+
+int a = 5;
+int b = 10;
+int c = b;
+int d = a;
+b = a;
+c = b;
+
+![52-1](https://github.com/user-attachments/assets/04c798e6-97e0-45cf-9ee8-d90bfdd04f4f)
+
+![54-2](https://github.com/user-attachments/assets/0d4ab57d-f03f-419c-8e94-48e653131b3d)
+
+👋 55 - Tanımlanmış Bir Değişkenin Değerini Okuma - Kritik 2
+
+int a = 5;
+a = a;
+
+![55](https://github.com/user-attachments/assets/3efb199e-5428-40f0-8ea9-f3ff002cd3ee)
+
+👋 56 - Değeri Olmayan Değişkenler
+
+Bir değişkeni main metodu içinde oluşturduğunuzda bellekte alan tahhsis edilir ve bu değeri olmayan değişkenlerle neler yapılır?
+Classlarda değişken tanımlanıp atanmazsa otomatik atanma default değerlerle yapılıyordu. 
+Mainde değeri olmayan bir değişkeni bir yerde çağıramam(değerini yazdıramam).
+Başka bir değişkene, değeri olmayan bir değişkeni atayamam.
+Bir metot içinde tanımlanan değişkenlerin ilk değerlerini manuel olarak vermeyi alışkalık haline getirin. Çünkü programın rahatça işlenebilmesi ve kullanılabilmesi içinidr. 
+
+👋 57 - Değişken Davranışları Genel Bakış - Ref İçin Farkındalık 
+
+int a = 5 olsun, stackte tutulur. Ramde veri türüne göre alan tahsis ediliyor ve bulunduğu alana göre veri tutuluyor. Ramde verilerimiz olucak ve biz yazılımcı olarak rame doğrudan pointer ile doğrudan erişebiliyoruz, ancak diğer değişkenlerle doğrudan bellek adresine erişemiyoruz. Ram bellekten değişkeni alırız/işleriz/kullanırız işte bu süreçte davranışsal olarak değişkenler isimleri üzerinden hareket ediyor.
+
+Bir değişkenin ismini assign operatörünün solunda çağırırsak farklı davranış, sağında çağırırsak farklı davranış sergiliyor. Solundaysa, değişkenin kendisini yani bellek adresini bellekteki o kısmı o alanı getirir. Dolayısıyla o kısma bir atama işlemi yapabilirsin. Sağındaysa, değişkenin değerini getirir. 
+
+👉 ! Sol tarafta: Bir değişkenin ismi, bellek adresini işaret eder. Bu, değişkenin hangi bellek bölgesinde saklandığını belirtir ve bu bölgeye yeni bir değer atama işlemi yapılabilir.
+
+👉 ! Sağ tarafta: Değişkenin ismi, bellekte saklanan değeri getirir. Bu, değişkenin içindeki gerçek veriyi kullanmak için gereklidir.
+
+X(a), bu metotta a'ya değişkenin değeri gelecek. Parametre, fonksiyonun parantezinin içini ifade eder.
+
+Değişken davranışında değişkenin kendi gitmesi ve değerinin gönderilmesi farklı şeylerdir. 
+
+👋 58 - Değişkenlerin Faaliyet Alanları - Scope Kavramı 
+
+Scope, faaliyet alanı, kapsamdır. Değişken ve fonksiyonların erişilebilirlik sınırlarını belirleyen alandır. Tanımlamalarda ve algoritmik çalışmalarda karışıklığı önleyen bir sınır çizer. C#'ta "{}" ile ifade edilir. 
+Scope içinde tanımladığım değişkene o scope içinde her yerde erişebilirim. Ayrıca bir scope içinde tanımlanan başka scopelar olursa yani scopelar iç içeyse yine erişim olur. Ama bir scope dışında farklı bir scope tanımlanırsa/farklı iki scope için erişim olmaz.
+
+![58](https://github.com/user-attachments/assets/4f0971be-13d8-454d-bdff-0544f4922640)
+
+Bir scope içinde aynı isimde birden fazla değişken olmaz ama farklı scopelarda aynı isimde değişkenler olabilir. Bu scopelar farklı threadlerde işlenir yani iki scope'nda işleri başkadır.
+
+![58-2](https://github.com/user-attachments/assets/d1d8aa6e-8b8b-45d4-a771-0b08bbbb2e0f)
+
+![58-3](https://github.com/user-attachments/assets/f992dcb5-ccc0-40e6-b63b-8d2ef794fb03)
+
+👋 59 - Custom Scope Oluşturmak
+
+Kendimizde scope oluşturabiliyoruz. Kodun içinde metodu faaliyet alanlarına bölebiliyoruz. İstediğiniz kadar Custom Scope oluşturabilirsiniz. {{{{{}}}}} 
+
+👋 60 - Değişmezler/Sabitler/Const
+
+Yazılımda verileri doğru bir şekilde işleyip sonuç elde etmeye çalışıyorduk. İşleyeceğimiz veri her zaman değişiklik gösterebilir ama bazen sabit değerlerle de çalışmamız gerekebilir. Yani sabit değişkenlerin değerlerinin değişmemesi gerekir. Süreçte var olan değişken değiştirilmez, değiştirilmeye çalışılırsa compiler hatta verir. 
+
+Const,
+Constanttan gelir.
+Tanımlama aşamsındayken değerini atamak zorundasın.
+Değişmeyendir fakat  istenildiği kadar okuanbilir/değerleri elde edilebilir.
+Prototip olarak değişkenlere çok benzer fakat davranışsal olarak değeri bir daha değiştirilemez. 
+Özünde static yapılanmadır.
+Bir const tanımlandığında STACK'te ilgili türde alan tahsis edilecektir ve ilk atanan değer dışında bir daha değer kabul etmeyecektir.
+
+✨ Static 
+Uygulama bazlı veri depolayabildiğimiz bellekte bir alandır. Static dedğişkenlerde uygulamanın her yerinden erişim sağlayabilirsin. Evrenseldir yani. Static'i bilmek için diğer alanları da bilmek gerekiyor. Stack, heap ve static gibi bellek alanlarına sahiptir. Şimdi scopelarda tanımladığımız yerden erişilebilir demiştir ama staticte öyle değil.
+
+✨ Static İle Const Arasındaki Fark Nedir ? 
+Static değişkenler adı üstünde değişkendir, değerleri değiştirilebilir ama consttların değeri değiştirilemez. Constlar statictir ama sabit olan statictir. Her yerde erişirsin ve değerini değiştiremezsin. Yapısal olarak static bellek alanında tutulur. 
+
+✨Readonly
+Sadece okunabilir değişkenler tanımlamaktadır. Atanan değer bir daha değiştirilemez. 
+
+✨ Const ve Readonly Arasındaki Fark Nedir ?
+Consttan farkı sadece tanımlandığı yerde değil, ayrıca constructor içinde de değeri atanabilir. Dependency injection deseninde çok sık tercih edilir. Yani tanımlama anında yada constructorında atama yapabilirsin. Ama consstta öyle değil sadece tanımalama aşamasında atama yapabilirsin ve readonly static değildir. 
+
+Const tanımlamada "const degisken_turu degisken_adi = değeri;" şeklinde tanımlama yapılır. 
+Aslında normal bir şekilde de değişkeni bir kere tanımlayıp kullanabiliriz ama insan hali yanlışlıkla değerini sonradan değiştirebiliriz işte bunun önüne geçebilmek için değişmezleri const keywordü ile işaretleriz. 
+
+👋 61 - Global Değişkenler
+
+Konumlandırıldığı yere göre bir değişken ya global olur yada local olur. Yapısı, işleyişi yada sorumluluğu değişmiyor sadece adı değişiyor.
+Bir değişken class scope'u içinde tanımlanıyorsa buna global denir. Metotlar içinde tanımlamaya ise local denir. Scope'lara göre düşünerek local/global diyebilirsin.
+
+👋 62 - Değişken Tanımlama Varyasyonları 
+
+İki tane değişken tanımlama varyasyonu vardır. İlki değişkeni tanımlayıp ister o an istersen daha sonra değer atayabilirsin. 
+int a = 5;
+int b = 14;
+
+İkinci varyasyon, aynı türden birden fazla değişken oluşturulacaksa eğer bu değişkenlerin tek imzada tanımlanabilmesidir. 
+int a = 5, b = 14; şeklinde tanımlama yapılabilir. İstersek değer attanmadan sadece tanımlamada yapılabilir. 
+
+int a, b; gibi. Burda dikkat edilmesi gereken husus aynı türden olmaları gerekmektedir.
+
+👋 63 - Değişkenler Arası Değer Atama Durumları - Deep Copy
+
+Değişkenler arasında değer atama durumlarında veri açısından davranışşın nasıl olduğunu inceleyelim.
+Değişkenler arasında değer atanırken, değerler birbirine atanırken, bir değişkendeki değer bir başka değişkene atanırken, burada verisel açıdan nasıl bir davranış sergilenir onu inceleyeceğiz.
+Değişkenler arası değer atanırken verisel açıdan iki davranış söz konusudur. Deep copy(klonlayıp, tekrar edip yeniden oluşturma) ile yapılabilir ayda shallow copy(yüzeysel kopyalama) dediğimiz atama yapılabilir.
+
+Deep Copy
+
+![63-1](https://github.com/user-attachments/assets/fb23a521-8479-4dee-8621-e3f64c18ef3a)
+
+![63-2](https://github.com/user-attachments/assets/4992e69a-b019-4f6c-8e46-134b28ef88ad)
+
+Var olan veriyi derinden kopyalıyor, klonluyor. Eldeki veri çoğalıyor. Eldeki veri birken iki oluyor. 
+
+👉 ! Değer türlü değişkenler birbirine atanırken default olarak deep copy geçerlidir. Yani veri otomatik olarak üretilir. int decimal bool vs. gibi türlerde birbirine atama durumları olursa deeep copy ile olur. 
+
+Şimdi klonlama durumunun gerçek olup olmadığını nasıl inceleyeceğiz.
+int a = 5;
+int b = a;
+a = a * 5;
+Console.WriteLine(a);
+Console.WriteLine(b); 
+a'da yaptığın değişiklik b'ye yansımayacaksa deep copydir.
