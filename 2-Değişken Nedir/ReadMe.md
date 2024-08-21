@@ -437,11 +437,11 @@ int a, b; gibi. Burda dikkat edilmesi gereken husus aynı türden olmaları gere
 
 👋 63 - Değişkenler Arası Değer Atama Durumları - Deep Copy
 
-Değişkenler arasında değer atama durumlarında veri açısından davranışşın nasıl olduğunu inceleyelim.
+Değişkenler arasında değer atama durumlarında veri açısından davranışın nasıl olduğunu inceleyelim.
 Değişkenler arasında değer atanırken, değerler birbirine atanırken, bir değişkendeki değer bir başka değişkene atanırken, burada verisel açıdan nasıl bir davranış sergilenir onu inceleyeceğiz.
-Değişkenler arası değer atanırken verisel açıdan iki davranış söz konusudur. Deep copy(klonlayıp, tekrar edip yeniden oluşturma) ile yapılabilir ayda shallow copy(yüzeysel kopyalama) dediğimiz atama yapılabilir.
+Değişkenler arası değer atanırken verisel açıdan iki davranış söz konusudur. Deep copy(klonlayıp, tekrar edip yeniden oluşturma) ile yapılabilir yada shallow copy(yüzeysel kopyalama) dediğimiz atama yapılabilir.
 
-Deep Copy
+✨ Deep Copy
 
 ![63-1](https://github.com/user-attachments/assets/fb23a521-8479-4dee-8621-e3f64c18ef3a)
 
@@ -449,7 +449,7 @@ Deep Copy
 
 Var olan veriyi derinden kopyalıyor, klonluyor. Eldeki veri çoğalıyor. Eldeki veri birken iki oluyor. 
 
-👉 ! Değer türlü değişkenler birbirine atanırken default olarak deep copy geçerlidir. Yani veri otomatik olarak üretilir. int decimal bool vs. gibi türlerde birbirine atama durumları olursa deeep copy ile olur. 
+👉 ! Değer türlü değişkenler birbirine atanırken default olarak deep copy geçerlidir. Yani veri otomatik olarak üretilir. int decimal bool vs. gibi türlerde birbirine atama durumları olursa deep copy ile olur. 
 
 Şimdi klonlama durumunun gerçek olup olmadığını nasıl inceleyeceğiz.
 int a = 5;
@@ -458,3 +458,137 @@ a = a * 5;
 Console.WriteLine(a);
 Console.WriteLine(b); 
 a'da yaptığın değişiklik b'ye yansımayacaksa deep copydir.
+
+👋 64 - Değişkenler Arası Değer Atama Durumları - Shallow Copy
+
+Davranış olarak biraz daa gelişmiş bir yapılanmadır. Aslında referansı kopyalıyoruz. Değişkenler arası değer atamalarında değeri türetmek/çoğaltmak/klonlamak yerine var olanı birden fazla referansla işaretlemeye dayalı kopyalama yöntemidir. 
+Stackteki değişkenler heap'teki değeri işaretliyorsa, bu yüzeysel kopyalamadır.
+
+![64-4](https://github.com/user-attachments/assets/04313dec-d607-45e9-a285-1dc472b1bf17)
+
+👉 ! Default olarak shallow copy, referans türlü değişkenlerde geçerlidir. 
+
+Bellekte birden fazla referansın tek bir veriyi işaret etmesi durumunda değişkenler/referanslar kendi aralarında shallow copydir. 
+Sonuçta ilgili değer bir değişikliğe uğradığında, değeri işaretleyen tüm referanslara bu değişiklik yansıyacaktır. 
+
+Normalde değer türlü değişkenler default olarak deep copy edilirler. İleride "ref keywordü" incelenirken, değer türlü değişkenlerde shallow copy nasıl yapılır bunu inceleyeceğiz.
+Shallow copy, oop derslerinde ele alacağımmız üzere nesne ve referans arasındaki ilişkide varsayılan davranış olarak kabul edilir. Oop'de nesneler için varsayılan olan shallow copyin haricinde deep copy nasıl yapılır bunu inceleyeceğiz. 
+
+👉 ! Deep copy değer türlü değişkenlerde varsayılandır. Shallow copy referans türlü değişkenlerde varsayılandır. 
+
+👋 65 - Object Türü
+
+Object Nedir ?
+Şimdi ben bir değer tutacağım ve bu değer türüne uygun değişkende tutulmalıdır. Örneğin 3 int de, ahmet stringte, a da charda tutulmalıdır ama ben bunların hepsini "object" türünde de tutabilirim.
+
+👉 ! Object, tüm türleri (değer,referans) karşılayabilen bir türdür. Peki neden karşılayabilyor ?
+Bütün türler varsayılan olarak objectten türerler. 
+
+![65-1](https://github.com/user-attachments/assets/e6aafdfc-ae74-4e93-a037-52f2373189a6)
+
+Görsele göre string de char da objectte tutulabilir. Object türlerin ademidir, ilkidir, hiçbir tür yokken object vardı. Bu yüzden tüm türleri karşılayabilir. Object, kısaca verilen değeri karşılayabilen türdür. 
+
+👉 ! Object, referans türlü bir değişkendir. Fakar değer türlü değerleri de karşılayabilir. 
+
+Objectte bir değer atandığında nasıl davranış sergiler ?
+Object değişkenler, ilgili verileri ramde object türde tutarlar. Fakat verinin öz türünü de içinde bozmadan saklarlar. Yani object içindeki veri, kendi öz türünde tutulur. 
+
+![65-2](https://github.com/user-attachments/assets/e5065024-79f8-4bb2-af1c-5c0d3c460dbd)
+
+Şarap örneği, dışarıdan object görünüyor ama içinde string. Bu durumda, object içindeki veriyi kendi türünde elde edebiliriz anlamına gelir. İşte objectteki bu özelliğe boxing denir. 
+
+👉 ! Boxing, veriyi object içine koymaktır, kutulamaktır. O veriyi object içinden kendi türünde çıkartmaya da unboxing denir.
+
+
+👋 66 - Object Türü - Boxing
+
+Object türdeki bir değişkene herhangi bir türdeki bir değeri göndermektedir. 
+
+int yas = 23;
+object  _yas = 23;
+
+ilk tanımlamada stackte int türünde tutulacaktır. Ama ikinci değişken tanımlamda object türü içinde int tutuluyor.
+
+Boxing işlemi sonucunda ilgili değer object türü içinde kendi türüyle tutulur. Fakat "_yas" değişkeni artık 23 değerini bizlere object türde getirecektir. 
+
+👉 ! Dikkat ederseniz object türde elde edilen değer üzerinde türüne özgü işlemler gerçeklştiremezsiniz. Örneğin, sayısal bir değer varsa o değer object olarak geleceğinden dolayı matematiksel işlem yapamazsınız.
+
+👉 ! Object bir değişkenin içindeki değer üzerinde türe özgü işlemler yapabilmek için o objectin içindeki değeri, kendi türünde elde etmemiz gerekir. İşte bu işleme unboxing denir.
+
+👉 ! Herhangi bir değer object türe assign ediliyorsa eğer, bu işlem kesinlikle boxingdir.
+
+👋 67 - Cast Operatörü
+
+Boxing edilmiş bir veriyi (objecte dönüştürülmüş, objecte set edilmiş, assign edilmiş bir veri) kendi türünde elde etmemizi sağlayan bir operatörüdür. 
+
+Tür dönüşümlerinde bilinçli tür dönüşümü konusunda cast operatörü kullanılacaktır. Ayrıca kalıtsal durumlarda dad karşımıza çıkacaktır. 
+
+Cas operatörü "()" dir. Cast operatörü parantezdir ve yanına object değeri alır.
+
+Cast operatörü,, object olan değişkenin solunda o objectin hangi türe unboxing etmek istiyorsak parantez içinde hedef türü bildirerek kullanırız. Örneğin,
+int yas = 5;
+object _yas = a; // boxing
+(int)_yas; // unboxing - cast operatörü _yas değişkeni/objesi içindeki değeri bana int olarak vermektedir.
+
+👋 68.1 - Object - Unboxing
+
+Unboxing, boxing edilmiş bir değeri kendi türünde objectten çıkartmaktır.
+
+objectt _yas = 28;
+_yas * 5; yaptığımızda hata verir. Çünkü biri int diğeri objecttir. Bu işlemi gerçekleştirebilmem için object'i int'e çervirmem gerekiyor. Burada (int)_yas; şeklinde cast edersek/çıkarırsak/unboxing yaparsak artık elimizde int türüne ait bir veri olmuş olacak ve değeri int değişken türüne atayarak matematiksel işlemelri gerçekleştirebiliriz. int __yas = (int)_yas;
+
+✨ Şimdi 28 değerini int'e atayabilirken neden object'e atadık ?
+
+Bazen sınıflarda/metotlarda yada yapmanız gereken tasarımlarda object kullanmanız gerekebilir. Çünkü gelecek verinin türünü bilemeyebilirsiniz. İşte oradaki türü bilemediğimiz için object ile karşılayıp içeride yapacağın işlemler için onu türüne ayıklamak gerekir. 
+
+👉 ! Unboxing işlemi esnasında boxing edilmiş tür ne ise onu bildirmemiz gerekir. 
+
+👋 68.2 - Object - Unboxing
+
+Eğer int türünde veriyi string olarak cast etmeye çalışırsan program patlar.
+
+int _yas = 5;
+string yas = (string)_yas; kod semantik açıdan doğru olduğu için hata vermez gibi görünüyor ama compiler edilip runtime kısmına gelince boxing unbozing işlemi yapıldığında orada kod patlar.
+
+👋 69 - C# Var Keywordü Nedir - Ne İşe Yara ? 
+
+"var" bir değişken değil, bir keyworddür ve belli işlemi yapan keyworddür.
+
+Eğer, tutacağın değere göre değişkenin türünü compiler'a belirletmek istiyorsanız var kwyeordü kullanabilirsiniz. 
+
+"var" keywordü, kendisine atanan değerin türüne bürünür.
+
+bool medeniHal = true;
+var medeniHal = true; şeklinde tanımlamada yapılabilir. Burada true bool olduğu için var bool türüne bürünecektir.
+
+👉 ! var keywordü, compiler tarafından değerin türüne göre otomatik büründürülen bir keyworddür. Fakat bir tür değildir. Genellikle, yazacağımız değişkenlerin türlerini yazmaktan üşendiğimiz için kullanırız. Halbuki, esasen farklı diller arasında desteklenmeyen türlerdeki verileri karşılayabilmek için oluşturulmuş, ortak bir keyyworddür. 
+
+👉 !  var, diller arasındaki entegrasyonda kullanılıyor.
+
+var keywordü ile tanımlanan değişkenin değeri tanımlama aşamasında verilmeli ki türü belirlenip direkt ona dönüşebilsin ve o türde davranış sergilesin.
+
+👉 ! var keywordüyle tanımlanan değişkene ilk değer verildikten sonra o değerin türüne bürüneceği için sonraki durumlarda değeri farklı türde verilmez. 
+
+✨ Var - Object Arasındaki Fark 
+
+var x = 5;
+object y = 15;
+var stackte int türünde tutulur. Birinde unboxing boxing işlemi olur diğerinde olmaz. Yani var bir keyword iken object bir türdür. "var" atanan değerin türüne bürünürken, "object" atanan değeri boxing ederek objecte dönüştürür. 
+
+✨ Var Bellek Yapısı 
+
+var anahtar kelimesi, bellek yapısı açısından özel bir yapı oluşturmaz; sadece değişkenin türünü belirlemenin daha kısa bir yoludur. Derleyici, türü belirlediğinde, bu türün bellek yapısı normalde nasıl ise aynı şekilde bellek yönetimi yapılır.
+
+👋 70 - C# Dynamic Keyword Ne İşe Yarar Nedir ? 
+
+var a = 5;
+var'a çok benzer, var'ın runtime'daki versiyonudur.
+var'da compiler sürecindeyken dönüşüm olur.
+dynamic b = 14;
+dynamic compiler sürecindeyken hala dynamictir. Ne zamanki program çalıştırılıp runtime olursa o zaman ilgili değerin türüne bürünür. b int olur yani. Dynamic olan değişkenin türü belli olmadan değişkeni çağırırsan herhangi bir şekilde metottaki bir veriye erişemezsin. Çünkü gelecek olan memberları bilmiyorsun/göremiyorsun.
+
+var da tanımlama aşamasında ilgili değerin türüne büründüğünden dolayı, sonradan değeri değiştirilmek istenirse türe uygun olarak değer verilmelidir. Dynamic'te ise, runtime da tür belirlenir ama kararlı davranmaz. Yani dynamic'te önce string sonra int double vs. olabilir.
+
+✨ Dynamic Nerelerde Tercih Edilir ?
+
+Türünü bilmediğimiz uzaktan veri geldiğinde kullanılır, var ile karşılayamayız çünkü.
