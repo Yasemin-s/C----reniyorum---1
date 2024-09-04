@@ -276,3 +276,127 @@ O tür ile ilgili bilgileri edinmek için kullanılan bir oepratördür.
 Type t = typeof(int); // int türüne ait tümm bilgiler burada t değişkenine atanmıştır.
 
 👉 ! Type türü, değer türlü bir değişken değildir. Dolayısıyla referans türlü bir değişken olduğunu ileride konuşacağız.
+
+👋 117 - Default Operatörü 
+
+Herhangi bir değerin/türün default değernin döndürür.
+
+✨ Default değer ne demektir ? 
+Default değerler her tür için yazılımda tanımlanmış birr varsayılan değer demektir. 
+
+sayısal = 0
+string = null
+bool = false
+char = \0
+referans = null
+
+Biz hangi türün hangi değere sahip olduğunu bilmiyorsak default oepratörü ile kolayca öğrenebiliriz.
+
+![117-1](https://github.com/user-attachments/assets/e3a39098-881b-4a32-9d9f-39e7f8a97f6b)
+
+👉 ! String ve program için bir şey dönmedi çünkü null, değersizdir. 
+
+Elimizdeki herahangi bir değere default değerini vermek istiyorsak şu şekilde kullanabiliriz.
+int a = default; yada int a = default(int);
+
+👋 118 - Is Operatörü
+
+Elimizde herhangi bir boxing olarak tutulmuş bir değerin öz türünü öğrenmek/check edebilmek/kontrol edebilmek için kullanılan operaatördür. 
+Is oepratörü, denetleme neticesinde durumu bool yani true yada false oalrak döndürecektir.
+Bazen elimizdeki object içerisinde olan değerin hangi türde olduğunu bilemeyiz. İşte bu durumda is ile kontrol sağlayıp türünü öğrenebiliriz. 
+
+![118-1](https://github.com/user-attachments/assets/20d501e3-ec06-4c57-85d2-0d8c68c5c056)
+
+👉 ! İleride if yapılanmasında çok tercih ettiğimiz bir operatör olacaktır.
+
+👉 ! Oop yapılanmasında polimorfizm is operatörüyle kalıtımsal durumlardaki nesnelerin türlerini de öğrenebileceğiz. 
+
+👋 119 - Is Null Operatörü
+
+Bir değerin null olup olmamasını kontrol eden sonuç olarak geriye bool döndüren operatördür. 
+
+string a = "yasom";
+string b = null;
+Console.WriteLine(a is null); false, b için true döenr.
+
+Is null operatörü sadece null olabilen türlerde kullanılır. Bizim 2 tür değişkenimiz vardır. Değer türlü ve referans türlü. Değer türlü değişkenler not nullable'dır, yani null olamazlar. Referans türler ise nullable, null olabilen türlerdir. 
+
+👉 ! Elimizdeki tür referans türlü bir değişken ise null değerini verebiliyoruz. Değer türlüde kullanamıyoruz çünkü adı üstünde illa bir değeri olmalıdır.  Hiç yoktan default değerlerden biri olmalı yani değeri olmalıdır.
+
+int c = null; diyemem , hata verir.
+
+👋 120 - Is Not Null Operatörü
+
+Eldeki değerin null olup olmamasıyla ilgilenmekte ve geriye bool sonuç döndürmektedir.
+
+Is null, null olduğunda true döner.
+
+Is not null, null olmadığında true döner.
+
+string a = "yasom";
+
+Console.WriteLine(a is not null); // evet null değil dolayısıyla true döner.
+
+👉 ! Sadece null alabilen türlerde kullanılabilir. Mesela int için kontrol yapamazsın. 
+
+👋 121 - As Operatörü
+
+As oepratörü, cast operatörüne alternatif olarak üretilmiş bir operatördür. Yani dönüşümde kullandığımız bir operatördür. Peki hangi dönüşümde kullanıyoruz ? As operatörü, cast operatörünün unboxing boyutuna alternatif olarak üretilmiş bir operatördür. 
+
+👉 ! Normalde cast işleminde, unboxing ederken öz türüne göre bu işlemi yapmak gerekir. Kendi öz türü dışında dönüşüm yapılmaya çalışılırsa hata verir. As kullanımında ise türüne uygun bir şekilde as edilmesi zorunlu değildir. Eğer ki tür uygunsa unboxing işlemi başarıyla gerçekleşir. Eğer tür uygun değilse hhata vermez null değer döner. Bu durumda programatik olarak yazılımın sonlanmadan akışta kontrol edilmesine müsade edecek ve işleme devam edecektir. 
+
+👉 ! 
+
+Object x = 233;
+Type t = x as Type; şeklinde kullanılır. Type kullanımındaki amaç, as         operatörü tür uygun olmadığı takdirde geriye null döndüreceği için bu null'u  karşılayabilen türlerle çalışmak isteyecektir. Haliyle as operatörü değer     türlü değişkenlerde kullanılamaz. Mesela Type yerine int koysak olmaz, çünkü  int null karşılayamaz. 
+
+👉 ! Referans türlü değişkenlerle çalışılabilir. 
+
+![121-1](https://github.com/user-attachments/assets/bde7eb9f-192e-4f2c-9706-eaffa2f7ca29)
+
+👋 122 - Nullable Operatörü (?)
+
+![122-1](https://github.com/user-attachments/assets/3b2d215a-6f69-45b8-ae5c-eab6ceb5bda9)
+
+Değer türlü değişkenler null olamaz. Bir değer türlü değişkenin null olmasını istiyorsan, onu nullable yapmak gerekir bunu da nullable operatörü ile yaparsın. 
+
+👉 ! int? a = null; kullanılabilir. Artık bu şekilde kullanımdan sonra değer türlü değişkenden ziyade referans türlü değişken gibi hareket edecektir ve ull değerleri karşılayabilecektir.
+
+👉 ! Bir değer türlü değişken nullable yapıldıysa eğer is null is not null as gibi null ile çalışan operatörler üzerinde kullanılabilir. 
+
+👉 !
+
+Object x = 233;
+int? y = x as int?; // int'i null olabilir şekilde çıkartman gerekiyor ki null olabilir şekilde int'de tutabilesin.
+
+👋 123 - Null Coalescing (??) Operatörü
+
+Elimizdeki değişkenlerde değeri null olan varsa null yerine başka bir değer göndermeyi sağlıyor. 
+
+👉 !
+
+string a = null;
+a ?? "merhaba"; // a null ise eyrine merhaba yyazsın. a null değilse kendi değerini yazsın. Meraba yazar bu durumda. 
+
+string b = "yasom"; 
+b ?? "bulut";  // yasom yazar.
+
+👉 ! Dikkat edilirse null coalesing bizi if else ve bunun gibi kontrollerden kurataracaktır. 
+
+👉 ! Console.WriteLine(a == null ? "merhaba" : a); bunu yazmanın kısa ve efektif yolu (a ?? "merhaba";) budur.
+
+👉 ! Null coalesing operatöründe her iki taraftaki değerler yada değişkenler aynı olmalıdır. Yani bir taraf string bir taraf int olamaz. 
+
+👋 124 - Null Coalesing Assigment (C# 8.0)
+
+Null coalesing operatörünün atama işlemini yapan daha gelişmiş bir versiyonudur. Amaç, elimizdeki null olan değerlerin eğer null ise değerini değiştirmeye değilse de var olan değerini korumayı sağlayan operatördür. 
+
+string x = null; 
+Console.WriteLine(x ??= "hello"); // x'in değeri null ise hello yaz ve hello'yu x'e ata. x'in değeri null değilse x'i ekrana yazdır. 
+
+![124-1](https://github.com/user-attachments/assets/d4e4323d-4390-4ddf-92e2-198b07607d53)
+
+👉 !
+
+int? id = null; 
+id ??= 1;  // id null ise 1 değerini ata, eğer değilse değerini koru. 
